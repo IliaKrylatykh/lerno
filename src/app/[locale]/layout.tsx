@@ -6,6 +6,7 @@ import { getMessages } from 'next-intl/server'
 import { hasLocale, Locale, NextIntlClientProvider } from 'next-intl'
 import { notFound } from 'next/navigation'
 import { routing } from '@/shared/i18n/routing'
+import NextTopLoader from 'nextjs-toploader'
 
 const fontSans = FontSans({
 	subsets: ['latin'],
@@ -43,6 +44,7 @@ export default async function RootLayout(
 				)}
 			>
 				<NextIntlClientProvider locale={locale} messages={messages}>
+					<NextTopLoader showSpinner={false} />
 					{children}
 				</NextIntlClientProvider>
 			</body>
