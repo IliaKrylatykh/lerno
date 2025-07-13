@@ -1,7 +1,4 @@
-export interface Kindergarten {
-	id: string
-	createdAt: string
-	updatedAt: string
-	ageGroup?: string
-	institutionId: string
-}
+import { z } from 'zod'
+
+export const kindergartenIdSchema = z.string()
+export type KindergartenId = z.infer<typeof kindergartenIdSchema>

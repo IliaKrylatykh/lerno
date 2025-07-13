@@ -9,6 +9,7 @@ export default async function Layout({
 	return (
 		<div className='flex flex-col min-h-screen'>
 			<AppHeader />
+
 			<main className='flex-grow'>{children}</main>
 			<AppFooter />
 		</div>
