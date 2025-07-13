@@ -1,0 +1,104 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model School {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  translations SchoolTranslation[]
+  contacts     SchoolContact[]
+}
+
+model SchoolTranslation {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  schoolId    String              @map("school_id")
+  lang        TranslationLanguage
+  name        String
+  slug        String
+  address     String?
+  description String?
+
+  school School @relation(fields: [schoolId], references: [id])
+
+  @@unique([lang, slug])
+  @@unique([schoolId, lang])
+}
+
+model SchoolContact {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  schoolId    String      @map("school_id")
+  type        ContactType
+  value       String
+  description String?
+
+  school School @relation(fields: [schoolId], references: [id])
+}
+
+model Kindergarten {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  ageGroup String? @map("age_group")
+
+  translations KindergartenTranslation[]
+  contacts     KindergartenContact[]
+}
+
+model KindergartenTranslation {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  kindergartenId String              @map("kindergarten_id")
+  lang           TranslationLanguage
+  name           String
+  slug           String
+  address        String?
+  description    String?
+
+  kindergarten Kindergarten @relation(fields: [kindergartenId], references: [id])
+
+  @@unique([lang, slug])
+  @@unique([kindergartenId, lang])
+}
+
+model KindergartenContact {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  kindergartenId String      @map("kindergarten_id")
+  type           ContactType
+  value          String
+  description    String?
+
+  kindergarten Kindergarten @relation(fields: [kindergartenId], references: [id])
+}
+
+enum TranslationLanguage {
+  sr
+  en
+  ru
+}
+
+enum ContactType {
+  TELEGRAM
+  VIBER
+  WHATSAPP
+  PHONE
+  EMAIL
+}

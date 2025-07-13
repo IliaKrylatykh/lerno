@@ -1,0 +1,33 @@
+{
+  "Common": {
+    "search": "Поиск",
+    "kindergarten": "Детский сад",
+    "kindergartens": "Детские сады",
+    "school": "Школа",
+    "schools": "Школы",
+    "city": {
+      "city": "Город",
+      "allCities": "Все города"
+    }
+  },
+  "HomePage": {
+    "title": "Образование в Сербии"
+  },
+  "Filters": {
+    "title": "Параметры поиска",
+    "languages": "Языки преподавания",
+    "areas": "Районы",
+    "checkboxGroup": {
+      "placeholder": "Поиск...",
+      "hide": "Скрыть",
+      "showAll": "Показать все"
+    },
+    "clearFilters": "Сбросить фильтры"
+  },
+  "CitySwitcher": {
+    "selectCity": "Выберите город:"
+  },
+  "LanguageSwitcher": {
+    "selectLanguage": "Выберите язык:"
+  }
+}

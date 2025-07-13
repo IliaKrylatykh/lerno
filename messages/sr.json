@@ -1,0 +1,33 @@
+{
+  "Common": {
+    "search": "Traži",
+    "kindergarten": "Vrtić",
+    "kindergartens": "Vrtići",
+    "school": "Škola",
+    "schools": "Škole",
+    "city": {
+      "city": "Grad",
+      "allCities": "Svi gradovi"
+    }
+  },
+  "HomePage": {
+    "title": "Obrazovanje u Srbiji"
+  },
+  "Filters": {
+    "title": "Opcije pretrage",
+    "languages": "Jezici nastave",
+    "areas": "Okruzi",
+    "checkboxGroup": {
+      "placeholder": "Pretraga...",
+      "hide": "Sakrij",
+      "showAll": "Prikaži sve"
+    },
+    "clearFilters": "Resetujte filtere"
+  },
+  "CitySwitcher": {
+    "selectCity": "Izaberite grad:"
+  },
+  "LanguageSwitcher": {
+    "selectLanguage": "Izaberite jezik:"
+  }
+}
