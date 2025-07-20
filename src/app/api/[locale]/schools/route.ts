@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { db } from '@/shared/lib/db'
 import { SchoolList } from '@/entities/school'
 import { Locale } from '@/shared/types'
+import { supabase } from '@/shared/lib/db'
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
 	const pathname = request.nextUrl.pathname
@@ -9,17 +9,29 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 	const lang = (segments[2] as Locale) ?? 'en'
 
 	try {
-		const schoolsFromDb = await db.school.findMany({
-			include: {
-				translations: {
-					where: { lang },
-				},
-				contacts: true,
-			},
-		})
+		const { data, error } = await supabase.from('School').select(`
+				id,
+				contacts (
+					type,
+					value,
+					description
+				),
+				translations (
+					name,
+					slug,
+					address,
+					description,
+					lang
+				)
+			`)
 
-		const schools: SchoolList = schoolsFromDb.map(school => {
-			const translation = school.translations[0]
+		if (error) {
+			console.error('[SUPABASE_FETCH_ERROR]', error.message)
+			return NextResponse.json({ error: error.message }, { status: 500 })
+		}
+
+		const schools: SchoolList = (data ?? []).map(school => {
+			const translation = school.translations?.find(t => t.lang === lang)
 
 			return {
 				id: school.id,
