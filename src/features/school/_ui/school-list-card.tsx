@@ -19,7 +19,7 @@ interface Props {
 export const SchoolListCard: FC<Props> = ({ school, className }) => {
 	return (
 		<Link
-			href={`schools/${school.id}`}
+			href={`schools/subotica/${school.slug}`}
 			className={cn('flex flex-col gap-2 w-full', className)}
 			target='_blank'
 		>
