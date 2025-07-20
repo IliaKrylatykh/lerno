@@ -1,9 +1,18 @@
-import { Link } from '@/shared/i18n/navigation'
+'use client'
+
+import { Link, usePathname } from '@/shared/i18n/navigation'
 
 export const Logo = () => {
-	return (
+	const pathname = usePathname()
+	const isHome = pathname === '/'
+
+	const content = <span className='font-bold'>Lerno</span>
+
+	return isHome ? (
+		<div className='flex items-center text-white py-4'>{content}</div>
+	) : (
 		<Link className='flex items-center text-white py-4' href='/'>
-			<span className='font-bold'>Lerno</span>
+			{content}
 		</Link>
 	)
 }

@@ -22,7 +22,7 @@ export const KindergartenListCard: FC<Props> = ({
 }) => {
 	return (
 		<Link
-			href={`kindergartens/${kindergarten.id}`}
+			href={`kindergartens/subotica/${kindergarten.slug}`}
 			className={cn('flex flex-col gap-2 w-full', className)}
 			target='_blank'
 		>

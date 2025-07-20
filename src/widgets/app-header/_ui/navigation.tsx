@@ -16,23 +16,35 @@ export const Navigation = () => {
 	const buttonBaseClasses =
 		'flex h-full items-center justify-center rounded-none border-b-4 text-white hover:bg-gray-800 hover:text-white py-4'
 
-	const isActive = (path: string) => pathname.startsWith(path)
+	const isActive = (path: string) => pathname === path
 
 	return (
 		<nav className='h-full flex flex-row'>
-			{navItems.map(item => (
-				<Link href={item.href} key={item.href} className='h-full flex'>
+			{navItems.map(item => {
+				const active = isActive(item.href)
+				const button = (
 					<Button
+						key={item.href}
 						variant='ghost'
 						className={`${buttonBaseClasses} ${
-							isActive(item.href) ? 'border-red-700' : 'border-transparent'
+							active ? 'border-red-700' : 'border-transparent'
 						}`}
-						aria-current={isActive(item.href) ? 'page' : undefined}
+						aria-current={active ? 'page' : undefined}
 					>
 						{t(item.label)}
 					</Button>
-				</Link>
-			))}
+				)
+
+				return active ? (
+					<div key={item.href} className='h-full flex'>
+						{button}
+					</div>
+				) : (
+					<Link key={item.href} href={item.href} className='h-full flex'>
+						{button}
+					</Link>
+				)
+			})}
 		</nav>
 	)
 }
