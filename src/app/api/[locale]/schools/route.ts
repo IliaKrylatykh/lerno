@@ -9,14 +9,14 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 	const lang = (segments[2] as Locale) ?? 'en'
 
 	try {
-		const { data, error } = await supabase.from('School').select(`
+		const { data, error } = await supabase.from('schools').select(`
 				id,
-				contacts (
+				school_contacts (
 					type,
 					value,
 					description
 				),
-				translations (
+				school_translations (
 					name,
 					slug,
 					address,
@@ -31,7 +31,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 		}
 
 		const schools: SchoolList = (data ?? []).map(school => {
-			const translation = school.translations?.find(t => t.lang === lang)
+			const translation = school.school_translations?.find(t => t.lang === lang)
 
 			return {
 				id: school.id,

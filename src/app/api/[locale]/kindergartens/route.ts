@@ -9,14 +9,14 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 	const lang = (segments[2] as Locale) ?? 'en'
 
 	try {
-		const { data, error } = await supabase.from('Kindergarten').select(`
+		const { data, error } = await supabase.from('kindergartens').select(`
 				id,
-				contacts (
+				kindergarten_contacts (
 					type,
 					value,
 					description
 				),
-				translations (
+				kindergarten_translations (
 					name,
 					slug,
 					address,
@@ -31,7 +31,9 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 		}
 
 		const kindergartens: KindergartenList = (data ?? []).map(k => {
-			const translation = k.translations?.find(t => t.lang === lang)
+			const translation = k.kindergarten_translations?.find(
+				t => t.lang === lang
+			)
 
 			return {
 				id: k.id,
