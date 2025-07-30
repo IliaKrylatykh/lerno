@@ -40,6 +40,7 @@ export const MainPageFilters: FC = () => {
 					<Button
 						onClick={() => setSelectedType('schools')}
 						variant='outline'
+						disabled
 						className={cn(
 							'flex-1 min-w-[250px] px-4 py-3 flex items-center justify-center font-semibold text-base sm:text-xl gap-2 sm:gap-4 border-2 text-black cursor-pointer',
 							selectedType === 'schools'
