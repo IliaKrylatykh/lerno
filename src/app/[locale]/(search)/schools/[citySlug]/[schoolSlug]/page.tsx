@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { getKindergarten } from '@/entities/kindergarten'
+import { getSchool } from '@/entities/school'
 import { Locale } from '@/shared/types'
 import {
 	Card,
@@ -9,22 +9,24 @@ import {
 	Container,
 } from '@/shared/ui'
 
-export default async function KindergartenPage({
+export default async function SchoolPage({
 	params,
 }: {
 	params: Promise<{
 		locale: Locale
 		citySlug: string
-		kindergartenSlug: string
+		schoolSlug: string
 	}>
 }) {
 	const resolvedParams = await params
 	const locale = resolvedParams.locale
-	const kindergartenSlug = resolvedParams.kindergartenSlug
+	const schoolSlug = resolvedParams.schoolSlug
 
-	const kindergarten = await getKindergarten(locale, kindergartenSlug)
+	const school = await getSchool(locale, schoolSlug)
 
-	if (!kindergarten) {
+	console.log(school)
+
+	if (!school) {
 		return (
 			<div className='text-center mt-10 text-red-600'>
 				Детский сад не найден или произошла ошибка загрузки.
@@ -37,7 +39,7 @@ export default async function KindergartenPage({
 			<div className='max-w-4xl mx-auto p-6 space-y-6'>
 				<Card className='shadow-xl'>
 					<CardHeader>
-						<CardTitle className='text-2xl'>{kindergarten.name}</CardTitle>
+						<CardTitle className='text-2xl'>{school.name}</CardTitle>
 						<div className='mt-2 flex flex-wrap items-center gap-2'>
 							{/* <Badge variant='outline'>от 2 до 6 лет</Badge> */}
 							{/* <Badge variant='outline'>Частный</Badge> */}
@@ -45,15 +47,15 @@ export default async function KindergartenPage({
 						</div>
 					</CardHeader>
 					<CardContent>
-						<p className='text-muted-foreground'>{kindergarten.description}</p>
+						<p className='text-muted-foreground'>{school.description}</p>
 					</CardContent>
 				</Card>
 
-				{kindergarten.mainPhoto && (
+				{school.mainPhoto && (
 					<Card className='overflow-hidden rounded-2xl'>
 						<Image
-							src={kindergarten.mainPhoto}
-							alt={`Фото ${kindergarten.name}`}
+							src={school.mainPhoto}
+							alt={`Фото ${school.name}`}
 							width={800}
 							height={400}
 							className='object-cover w-full h-auto'
@@ -66,7 +68,7 @@ export default async function KindergartenPage({
 						<CardTitle>Контакты</CardTitle>
 					</CardHeader>
 					<CardContent className='space-y-2 text-sm text-muted-foreground'>
-						<div>📍 Адрес: {kindergarten.address}, Суботица</div>
+						<div>📍 Адрес: {school.address}, Суботица</div>
 					</CardContent>
 				</Card>
 

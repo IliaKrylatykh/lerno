@@ -7,10 +7,10 @@ export default async function Layout({
 	children: React.ReactNode
 }) {
 	return (
-		<div className='flex flex-col min-h-screen'>
+		<div className='flex flex-col'>
 			<AppHeader />
 
-			<main className='flex-grow'>{children}</main>
+			<main className='flex-grow min-h-screen'>{children}</main>
 			<AppFooter />
 		</div>
 	)

@@ -14,9 +14,10 @@ export const Navigation = () => {
 	const pathname = usePathname()
 
 	const buttonBaseClasses =
-		'flex h-full items-center justify-center rounded-none border-b-4 text-white hover:bg-gray-800 hover:text-white py-4'
+		'flex h-full items-center justify-center rounded-none border-b-4 text-white hover:bg-gray-800 hover:text-white py-4 cursor-pointer'
 
-	const isActive = (path: string) => pathname === path
+	const isActive = (path: string) =>
+		pathname === path || pathname.startsWith(`${path}/`)
 
 	return (
 		<nav className='h-full flex flex-row'>

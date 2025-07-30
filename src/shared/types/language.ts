@@ -17,3 +17,10 @@ export type Language = z.infer<typeof languageSchema>
 
 export const languageListSchema = z.array(languageSchema)
 export type LanguageList = z.infer<typeof languageListSchema>
+
+export const slugsSchema = z.object({
+	en: z.string(),
+	sr: z.string(),
+	ru: z.string(),
+})
+export type Slugs = z.infer<typeof slugsSchema>

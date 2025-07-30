@@ -11,6 +11,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 	try {
 		const { data, error } = await supabase.from('kindergartens').select(`
 				id,
+				main_photo,
 				kindergarten_contacts (
 					type,
 					value,
@@ -35,13 +36,20 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 				t => t.lang === lang
 			)
 
+			const photoPath = k.main_photo
+			const photoData = photoPath
+				? supabase.storage.from('institutions').getPublicUrl(photoPath)
+				: null
+
+			const photoUrl = photoData?.data?.publicUrl ?? null
+
 			return {
 				id: k.id,
+				mainPhoto: photoUrl,
 				name: translation?.name ?? '',
 				slug: translation?.slug ?? '',
 				description: translation?.description ?? '',
 				address: translation?.address ?? '',
-				thumbnail: '',
 			}
 		})
 

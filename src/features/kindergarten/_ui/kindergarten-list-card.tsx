@@ -1,12 +1,6 @@
 import { KindergartenListItem } from '@/entities/kindergarten'
 import { Link } from '@/shared/i18n/navigation'
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardHeader,
-	CardTitle,
-} from '@/shared/ui'
+import { Card, CardDescription, CardHeader, CardTitle } from '@/shared/ui'
 import { cn } from '@/shared/ui'
 import Image from 'next/image'
 import { FC } from 'react'
@@ -24,16 +18,16 @@ export const KindergartenListCard: FC<Props> = ({
 		<Link
 			href={`kindergartens/subotica/${kindergarten.slug}`}
 			className={cn('flex flex-col gap-2 w-full', className)}
-			target='_blank'
 		>
-			<Card className='flex flex-row flex-grow py-0 rounded-none hover:shadow-2xl'>
-				<div className='flex justify-center relative w-40 h-40 bg-slate-200'>
-					{kindergarten.thumbnail ? (
+			<Card className='flex flex-row flex-grow py-0 hover:shadow-xl transition-shadow duration-300 ease-in-out'>
+				<div className='flex justify-center rounded-bl-xl rounded-tl-xl relative w-40 h-40 bg-slate-400'>
+					{kindergarten.mainPhoto ? (
 						<Image
-							src={kindergarten.thumbnail}
+							src={kindergarten.mainPhoto}
 							alt='kindergarten logo'
-							layout='fill'
-							objectFit='cover'
+							fill
+							className='object-cover rounded-bl-xl rounded-tl-xl'
+							sizes='160px'
 						/>
 					) : (
 						<Image
@@ -44,27 +38,13 @@ export const KindergartenListCard: FC<Props> = ({
 						/>
 					)}
 				</div>
-				<div className='flex flex-grow flex-col justify-between'>
+				<div className='flex flex-grow flex-col mt-4 justify-between'>
 					<CardHeader>
 						<CardTitle className='flex justify-between gap-2'>
 							{kindergarten.name}
 						</CardTitle>
 						<CardDescription>{kindergarten.address}</CardDescription>
 					</CardHeader>
-
-					<CardContent className='flex px-4 pb-4 justify-between'>
-						{/* <div className='flex gap-1'>
-							{kindergarten.languages?.map(item => (
-								<Image
-									key={item.id}
-									src={`/flags/${item.code}.svg`}
-									alt='flag'
-									width={30}
-									height={30}
-								/>
-							))}
-						</div> */}
-					</CardContent>
 				</div>
 			</Card>
 		</Link>

@@ -16,7 +16,7 @@ export default async function SchoolsPage({
 	const schools = await getSchoolList(locale)
 
 	return (
-		<Container className='mt-4 flex min-h-screen'>
+		<Container className='mt-4 flex'>
 			<div className='flex-grow ml-4'>
 				<SchoolList schools={schools} />
 			</div>
