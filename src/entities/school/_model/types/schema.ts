@@ -6,7 +6,7 @@ export const schoolListItemSchema = z.object({
 	name: z.string(),
 	slug: z.string(),
 	address: z.string(),
-	description: z.string(),
+	description: z.string().nullable(),
 	mainPhoto: z.string().nullable(),
 })
 
@@ -17,6 +17,6 @@ export const schoolSchema = z.object({
 	name: z.string(),
 	slug: z.string(),
 	address: z.string(),
-	description: z.string(),
+	description: z.string().nullable(),
 	mainPhoto: z.string().nullable(),
 })
