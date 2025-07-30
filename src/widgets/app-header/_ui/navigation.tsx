@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl'
 
 const navItems = [
 	{ href: '/kindergartens', label: 'kindergartens' },
-	{ href: '/schools', label: 'schools' },
+	// { href: '/schools', label: 'schools' },
 ]
 
 export const Navigation = () => {

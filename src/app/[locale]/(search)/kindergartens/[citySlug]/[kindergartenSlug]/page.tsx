@@ -62,11 +62,11 @@ export default async function KindergartenPage({
 				)}
 
 				<Card>
-					<CardHeader>
+					{/* <CardHeader>
 						<CardTitle>Контакты</CardTitle>
-					</CardHeader>
+					</CardHeader> */}
 					<CardContent className='space-y-2 text-sm text-muted-foreground'>
-						<div>📍 Адрес: {kindergarten.address}, Суботица</div>
+						<div>📍 {kindergarten.address}, Subotica</div>
 					</CardContent>
 				</Card>
 
