@@ -1,4 +1,4 @@
-import { schoolIdSchema, slugsSchema } from '@/shared/types'
+import { schoolIdSchema } from '@/shared/types'
 import z from 'zod'
 
 export const schoolListItemSchema = z.object({
@@ -16,7 +16,6 @@ export const schoolSchema = z.object({
 	id: schoolIdSchema,
 	name: z.string(),
 	slug: z.string(),
-	slugs: slugsSchema,
 	address: z.string(),
 	description: z.string(),
 	mainPhoto: z.string().nullable(),

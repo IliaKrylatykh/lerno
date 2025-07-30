@@ -5,13 +5,14 @@ import { supabase } from '@/shared/lib/db'
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
 	const pathname = request.nextUrl.pathname
-	const segments = pathname.split('/')
-	const lang = (segments[2] as Locale) ?? 'en'
+	const pathSegments = pathname.split('/')
+	const locale = (pathSegments[2] as Locale) ?? 'sr'
 
 	try {
 		const { data, error } = await supabase.from('kindergartens').select(`
 				id,
 				main_photo,
+				slug,
 				kindergarten_contacts (
 					type,
 					value,
@@ -19,7 +20,6 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 				),
 				kindergarten_translations (
 					name,
-					slug,
 					address,
 					description,
 					lang
@@ -31,27 +31,39 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 			return NextResponse.json({ error: error.message }, { status: 500 })
 		}
 
-		const kindergartens: KindergartenList = (data ?? []).map(k => {
-			const translation = k.kindergarten_translations?.find(
-				t => t.lang === lang
-			)
+		const kindergartens: KindergartenList = data.reduce<KindergartenList>(
+			(acc, kindergartenData) => {
+				const translation = kindergartenData.kindergarten_translations.find(
+					t => t.lang === locale
+				)
 
-			const photoPath = k.main_photo
-			const photoData = photoPath
-				? supabase.storage.from('institutions').getPublicUrl(photoPath)
-				: null
+				if (!translation) {
+					console.warn(
+						`[MISSING_TRANSLATION] Kindergarten ID=${kindergartenData.id} slug=${kindergartenData.slug} missing locale: ${locale}`
+					)
+					return acc
+				}
 
-			const photoUrl = photoData?.data?.publicUrl ?? null
+				const mainPhotoPath = kindergartenData.main_photo
+				const photoData = mainPhotoPath
+					? supabase.storage.from('institutions').getPublicUrl(mainPhotoPath)
+					: null
 
-			return {
-				id: k.id,
-				mainPhoto: photoUrl,
-				name: translation?.name ?? '',
-				slug: translation?.slug ?? '',
-				description: translation?.description ?? '',
-				address: translation?.address ?? '',
-			}
-		})
+				const photoUrl = photoData?.data?.publicUrl ?? null
+
+				acc.push({
+					id: kindergartenData.id,
+					mainPhoto: photoUrl,
+					name: translation.name,
+					slug: kindergartenData.slug,
+					description: translation.description,
+					address: translation.address,
+				})
+
+				return acc
+			},
+			[]
+		)
 
 		return NextResponse.json(kindergartens)
 	} catch (error) {

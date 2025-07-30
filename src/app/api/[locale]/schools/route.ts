@@ -5,13 +5,14 @@ import { supabase } from '@/shared/lib/db'
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
 	const pathname = request.nextUrl.pathname
-	const segments = pathname.split('/')
-	const lang = (segments[2] as Locale) ?? 'en'
+	const pathSegments = pathname.split('/')
+	const locale = (pathSegments[2] as Locale) ?? 'sr'
 
 	try {
 		const { data, error } = await supabase.from('schools').select(`
 				id,
 				main_photo,
+				slug,
 				school_contacts (
 					type,
 					value,
@@ -19,7 +20,6 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 				),
 				school_translations (
 					name,
-					slug,
 					address,
 					description,
 					lang
@@ -31,25 +31,36 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 			return NextResponse.json({ error: error.message }, { status: 500 })
 		}
 
-		const schools: SchoolList = (data ?? []).map(s => {
-			const translation = s.school_translations?.find(t => t.lang === lang)
+		const schools: SchoolList = data.reduce<SchoolList>((acc, schoolData) => {
+			const translation = schoolData.school_translations.find(
+				t => t.lang === locale
+			)
 
-			const photoPath = s.main_photo
-			const photoData = photoPath
-				? supabase.storage.from('institutions').getPublicUrl(photoPath)
+			if (!translation) {
+				console.warn(
+					`[MISSING_TRANSLATION] School ID=${schoolData.id} slug=${schoolData.slug} missing locale: ${locale}`
+				)
+				return acc
+			}
+
+			const mainPhotoPath = schoolData.main_photo
+			const photoData = mainPhotoPath
+				? supabase.storage.from('institutions').getPublicUrl(mainPhotoPath)
 				: null
 
 			const photoUrl = photoData?.data?.publicUrl ?? null
 
-			return {
-				id: s.id,
+			acc.push({
+				id: schoolData.id,
 				mainPhoto: photoUrl,
-				name: translation?.name ?? '',
-				slug: translation?.slug ?? '',
-				description: translation?.description ?? '',
-				address: translation?.address ?? '',
-			}
-		})
+				name: translation.name,
+				slug: schoolData.slug,
+				description: translation.description,
+				address: translation.address,
+			})
+
+			return acc
+		}, [])
 
 		return NextResponse.json(schools)
 	} catch (error) {

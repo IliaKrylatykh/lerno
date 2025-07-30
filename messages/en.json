@@ -1,33 +1,36 @@
 {
-  "Common": {
-    "search": "Search",
-    "kindergarten": "Kindergarten",
-    "kindergartens": "Kindergartens",
-    "school": "School",
-    "schools": "Schools",
-    "city": {
-      "city": "City",
-      "allCities": "All cities"
-    }
-  },
-  "HomePage": {
-    "title": "Education in Serbia"
-  },
-  "Filters": {
-    "title": "Search parameters",
-    "languages": "Languages​",
-    "areas": "Districts",
-    "checkboxGroup": {
-      "placeholder": "Search...",
-      "hide": "Hide",
-      "showAll": "Show all"
-    },
-    "clearFilters": "Clear Filters"
-  },
-  "CitySwitcher": {
-    "selectCity": "Select city:"
-  },
-  "LanguageSwitcher": {
-    "selectLanguage": "Select language:"
-  }
+	"Common": {
+		"search": "Search",
+		"kindergarten": "Kindergarten",
+		"kindergartens": "Kindergartens",
+		"school": "School",
+		"schools": "Schools",
+		"city": {
+			"city": "City",
+			"allCities": "All cities"
+		}
+	},
+	"HomePage": {
+		"title": "Education in Serbia"
+	},
+	"AppFooter": {
+		"text": "The information is provided for informational purposes only and may be out of date. The site is not responsible for the content of external links. We are not official representatives of the specified institutions."
+	},
+	"Filters": {
+		"title": "Search parameters",
+		"languages": "Languages​",
+		"areas": "Districts",
+		"checkboxGroup": {
+			"placeholder": "Search...",
+			"hide": "Hide",
+			"showAll": "Show all"
+		},
+		"clearFilters": "Clear Filters"
+	},
+	"CitySwitcher": {
+		"selectCity": "Select city:"
+	},
+	"LanguageSwitcher": {
+		"selectLanguage": "Select language:"
+	}
 }

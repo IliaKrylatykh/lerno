@@ -5,15 +5,15 @@ import { School } from '@/entities/school'
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
 	const pathname = request.nextUrl.pathname
-	const segments = pathname.split('/')
-	const lang = (segments[2] as Locale) ?? 'en'
-	const schoolSlug = segments[segments.length - 1]
+	const pathSegments = pathname.split('/')
+	const locale = (pathSegments[2] as Locale) ?? 'sr'
+	const schoolSlug = pathSegments[pathSegments.length - 1]
 
 	try {
 		const { data, error } = await supabase.from('schools').select(`
         id,
         main_photo,
-        slugs,
+        slug,
         school_contacts (
           type,
           value,
@@ -21,7 +21,6 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
         ),
         school_translations (
           name,
-          slug,
           address,
           description,
           lang
@@ -36,29 +35,37 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 			)
 		}
 
-		const record = data.find(k => k.slugs?.[lang] === schoolSlug)
+		const schoolData = data.find(s => s.slug === schoolSlug)
 
-		if (!record) {
+		if (!schoolData) {
 			return NextResponse.json({ error: 'School not found' }, { status: 404 })
 		}
 
-		const translation = record.school_translations.find(t => t.lang === lang)
+		const translation = schoolData.school_translations.find(
+			t => t.lang === locale
+		)
 
-		const photoPath = record.main_photo
-		const photoData = photoPath
-			? supabase.storage.from('institutions').getPublicUrl(photoPath)
+		if (!translation) {
+			return NextResponse.json(
+				{ error: 'Translation not found' },
+				{ status: 404 }
+			)
+		}
+
+		const mainPhotoPath = schoolData.main_photo
+		const photoData = mainPhotoPath
+			? supabase.storage.from('institutions').getPublicUrl(mainPhotoPath)
 			: null
 
 		const photoUrl = photoData?.data?.publicUrl ?? null
 
 		const school: School = {
-			id: record.id,
+			id: schoolData.id,
 			mainPhoto: photoUrl,
-			name: translation?.name ?? '',
-			slug: record.slugs?.[lang] ?? '',
-			slugs: record.slugs ?? {},
-			address: translation?.address ?? '',
-			description: translation?.description ?? '',
+			name: translation.name,
+			slug: schoolData.slug,
+			address: translation.address,
+			description: translation.description,
 		}
 
 		return NextResponse.json(school)

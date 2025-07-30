@@ -5,66 +5,70 @@ import { Kindergarten } from '@/entities/kindergarten'
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
 	const pathname = request.nextUrl.pathname
-	const segments = pathname.split('/')
-	const lang = (segments[2] as Locale) ?? 'en'
-	const kindergartenSlug = segments[segments.length - 1]
+	const pathSegments = pathname.split('/')
+	const locale = (pathSegments[2] as Locale) ?? 'sr'
+	const kindergartenSlug = pathSegments[pathSegments.length - 1]
 
 	try {
 		const { data, error } = await supabase.from('kindergartens').select(`
-				id,
-				main_photo,
-				slugs,
-				kindergarten_contacts (
-					type,
-					value,
-					description
-				),
-				kindergarten_translations (
-					name,
-					slug,
-					address,
-					description,
-					lang
-				)
-			`)
+        id,
+        main_photo,
+        slug,
+        kindergarten_contacts (
+          type,
+          value,
+          description
+        ),
+        kindergarten_translations (
+          name,
+          address,
+          description,
+          lang
+        )
+      `)
 
 		if (error || !data) {
-			console.error('[SUPABASE_FETCH_ERROR]', error.message)
-			return NextResponse.json({ error: error.message }, { status: 500 })
+			console.error('[SUPABASE_FETCH_ERROR]', error?.message)
+			return NextResponse.json(
+				{ error: error?.message || 'Unknown error' },
+				{ status: 500 }
+			)
 		}
 
-		const record = data.find(k =>
-			k.kindergarten_translations?.some(
-				t => t.lang === lang && t.slug === kindergartenSlug
-			)
-		)
+		const kindergartenData = data.find(k => k.slug === kindergartenSlug)
 
-		if (!record) {
+		if (!kindergartenData) {
 			return NextResponse.json(
 				{ error: 'Kindergarten not found' },
 				{ status: 404 }
 			)
 		}
 
-		const translation = record.kindergarten_translations.find(
-			t => t.lang === lang && t.slug === kindergartenSlug
+		const translation = kindergartenData.kindergarten_translations.find(
+			t => t.lang === locale
 		)
 
-		const photoPath = record.main_photo
-		const photoData = photoPath
-			? supabase.storage.from('institutions').getPublicUrl(photoPath)
+		if (!translation) {
+			return NextResponse.json(
+				{ error: 'Translation not found' },
+				{ status: 404 }
+			)
+		}
+
+		const mainPhotoPath = kindergartenData.main_photo
+		const photoData = mainPhotoPath
+			? supabase.storage.from('institutions').getPublicUrl(mainPhotoPath)
 			: null
 
 		const photoUrl = photoData?.data?.publicUrl ?? null
 
 		const kindergarten: Kindergarten = {
-			id: record.id,
+			id: kindergartenData.id,
 			mainPhoto: photoUrl,
-			name: translation?.name ?? '',
-			slug: translation?.slug ?? '',
-			slugs: record.slugs ?? {},
-			address: translation?.address ?? '',
-			description: translation?.description ?? '',
+			name: translation.name,
+			slug: kindergartenData.slug,
+			address: translation.address,
+			description: translation.description,
 		}
 
 		return NextResponse.json(kindergarten)

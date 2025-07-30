@@ -1,33 +1,36 @@
 {
-  "Common": {
-    "search": "Traži",
-    "kindergarten": "Vrtić",
-    "kindergartens": "Vrtići",
-    "school": "Škola",
-    "schools": "Škole",
-    "city": {
-      "city": "Grad",
-      "allCities": "Svi gradovi"
-    }
-  },
-  "HomePage": {
-    "title": "Obrazovanje u Srbiji"
-  },
-  "Filters": {
-    "title": "Opcije pretrage",
-    "languages": "Jezici nastave",
-    "areas": "Okruzi",
-    "checkboxGroup": {
-      "placeholder": "Pretraga...",
-      "hide": "Sakrij",
-      "showAll": "Prikaži sve"
-    },
-    "clearFilters": "Resetujte filtere"
-  },
-  "CitySwitcher": {
-    "selectCity": "Izaberite grad:"
-  },
-  "LanguageSwitcher": {
-    "selectLanguage": "Izaberite jezik:"
-  }
+	"Common": {
+		"search": "Traži",
+		"kindergarten": "Vrtić",
+		"kindergartens": "Vrtići",
+		"school": "Škola",
+		"schools": "Škole",
+		"city": {
+			"city": "Grad",
+			"allCities": "Svi gradovi"
+		}
+	},
+	"HomePage": {
+		"title": "Obrazovanje u Srbiji"
+	},
+	"AppFooter": {
+		"text": "Informacije su date samo u informativne svrhe i mogu biti zastarele. Sajt nije odgovoran za sadržaj eksternih linkova. Nismo zvanični predstavnici navedenih organizacija."
+	},
+	"Filters": {
+		"title": "Opcije pretrage",
+		"languages": "Jezici nastave",
+		"areas": "Okruzi",
+		"checkboxGroup": {
+			"placeholder": "Pretraga...",
+			"hide": "Sakrij",
+			"showAll": "Prikaži sve"
+		},
+		"clearFilters": "Resetujte filtere"
+	},
+	"CitySwitcher": {
+		"selectCity": "Izaberite grad:"
+	},
+	"LanguageSwitcher": {
+		"selectLanguage": "Izaberite jezik:"
+	}
 }
