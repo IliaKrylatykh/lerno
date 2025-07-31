@@ -13,6 +13,13 @@
 	"HomePage": {
 		"title": "Education in Serbia"
 	},
+	"KindergartensPage": {
+		"List": {
+			"Card": {
+				"agesGroup": "Ages"
+			}
+		}
+	},
 	"AppFooter": {
 		"text": "The information is provided for informational purposes only and may be out of date. The site is not responsible for the content of external links. We are not official representatives of the specified institutions."
 	},

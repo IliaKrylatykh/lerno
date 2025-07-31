@@ -13,6 +13,13 @@
 	"HomePage": {
 		"title": "Obrazovanje u Srbiji"
 	},
+	"KindergartensPage": {
+		"List": {
+			"Card": {
+				"agesGroup": "Uzrast"
+			}
+		}
+	},
 	"AppFooter": {
 		"text": "Informacije su date samo u informativne svrhe i mogu biti zastarele. Sajt nije odgovoran za sadržaj eksternih linkova. Nismo zvanični predstavnici navedenih organizacija."
 	},
