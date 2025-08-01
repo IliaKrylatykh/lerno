@@ -15,6 +15,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
         main_photo,
         slug,
 				age_groups,
+				is_private,
         kindergarten_contacts (
           type,
           value,
@@ -71,6 +72,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 			ageGroups: kindergartenData.age_groups,
 			address: translation.address,
 			description: translation.description,
+			isPrivate: kindergartenData.is_private,
 		}
 
 		return NextResponse.json(kindergarten)

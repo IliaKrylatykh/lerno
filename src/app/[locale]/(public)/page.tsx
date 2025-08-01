@@ -3,7 +3,7 @@ import { MainPageFilters } from '@/widgets/filters/client'
 import { useTranslations } from 'next-intl'
 
 export default function HomePage() {
-	const t = useTranslations('HomePage')
+	const t = useTranslations('home')
 
 	return (
 		<Container className='mt-4 flex flex-col items-center'>

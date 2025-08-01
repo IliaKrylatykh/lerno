@@ -8,7 +8,7 @@ import { useLocale, useTranslations } from 'next-intl'
 import { Link } from '@/shared/i18n/navigation'
 
 export const MainPageFilters: FC = () => {
-	const tCommon = useTranslations('Common')
+	const tCommon = useTranslations('common')
 	const locale = useLocale()
 
 	const [selectedType, setSelectedType] = useState<'kindergartens' | 'schools'>(

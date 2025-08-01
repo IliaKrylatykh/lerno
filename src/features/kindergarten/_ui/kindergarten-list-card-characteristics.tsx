@@ -12,7 +12,7 @@ interface Props {
 export const KindergartenListCardCharacteristics: FC<Props> = ({
 	ageGroups,
 }) => {
-	const t = useTranslations('KindergartensPage')
+	const t = useTranslations('common')
 
 	const ageRangeText = useMemo(() => {
 		if (!ageGroups || ageGroups.length === 0) return ''
@@ -23,8 +23,7 @@ export const KindergartenListCardCharacteristics: FC<Props> = ({
 
 	return (
 		<CardDescription className='w-50 border-l-1 p-4 font-semibold'>
-			{t('List.Card.agesGroup')}:{' '}
-			<p className='text-slate-800 text-lg'>{ageRangeText}</p>
+			{t('ages')}: <p className='text-slate-800 text-lg'>{ageRangeText}</p>
 		</CardDescription>
 	)
 }

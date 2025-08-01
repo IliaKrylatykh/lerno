@@ -1,29 +1,29 @@
 {
-	"Common": {
+	"common": {
 		"search": "Search",
 		"kindergarten": "Kindergarten",
 		"kindergartens": "Kindergartens",
 		"school": "School",
 		"schools": "Schools",
+		"ages": "Ages",
 		"city": {
 			"city": "City",
 			"allCities": "All cities"
 		}
 	},
-	"HomePage": {
+	"home": {
 		"title": "Education in Serbia"
 	},
-	"KindergartensPage": {
-		"List": {
-			"Card": {
-				"agesGroup": "Ages"
-			}
-		}
+	"kindergartens": {
+		"publicKindergarten": "Public kindergarten",
+		"privateKindergarten": "Private kindergarten",
+		"public": "Public",
+		"private": "Private"
 	},
-	"AppFooter": {
+	"appFooter": {
 		"text": "The information is provided for informational purposes only and may be out of date. The site is not responsible for the content of external links. We are not official representatives of the specified institutions."
 	},
-	"Filters": {
+	"filters": {
 		"title": "Search parameters",
 		"languages": "Languages​",
 		"areas": "Districts",
@@ -34,10 +34,10 @@
 		},
 		"clearFilters": "Clear Filters"
 	},
-	"CitySwitcher": {
+	"citySwitcher": {
 		"selectCity": "Select city:"
 	},
-	"LanguageSwitcher": {
+	"languageSwitcher": {
 		"selectLanguage": "Select language:"
 	}
 }

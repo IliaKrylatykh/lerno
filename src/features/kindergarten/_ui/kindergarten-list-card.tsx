@@ -5,6 +5,7 @@ import { cn } from '@/shared/ui'
 import Image from 'next/image'
 import { FC } from 'react'
 import { KindergartenListCardCharacteristics } from './kindergarten-list-card-characteristics'
+import { KindergartenListCardLabels } from './kindergarten-list-card-labels'
 
 interface Props {
 	kindergarten: KindergartenListItem
@@ -40,12 +41,15 @@ export const KindergartenListCard: FC<Props> = ({
 					)}
 				</div>
 				<div className='flex flex-grow flex-col mt-4 justify-between'>
-					<CardHeader>
+					<CardHeader className='p-0'>
 						<CardTitle className='flex justify-between gap-2'>
 							{kindergarten.name}
 						</CardTitle>
-						<CardDescription>{kindergarten.address}</CardDescription>
 					</CardHeader>
+					<CardDescription className='h-full flex flex-col justify-between mb-4'>
+						<div>{kindergarten.address}</div>
+						<KindergartenListCardLabels isPrivate={kindergarten.isPrivate} />
+					</CardDescription>
 				</div>
 				<KindergartenListCardCharacteristics
 					ageGroups={kindergarten.ageGroups}

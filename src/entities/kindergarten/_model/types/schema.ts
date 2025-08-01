@@ -9,6 +9,7 @@ export const kindergartenListItemSchema = z.object({
 	address: z.string(),
 	description: z.string().nullable(),
 	mainPhoto: z.string().nullable(),
+	isPrivate: z.boolean(),
 })
 
 export const kindergartenListSchema = z.array(kindergartenListItemSchema)
@@ -21,4 +22,5 @@ export const kindergartenSchema = z.object({
 	address: z.string(),
 	description: z.string().nullable(),
 	mainPhoto: z.string().nullable(),
+	isPrivate: z.boolean(),
 })

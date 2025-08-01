@@ -1,29 +1,29 @@
 {
-	"Common": {
+	"common": {
 		"search": "Traži",
 		"kindergarten": "Vrtić",
 		"kindergartens": "Vrtići",
 		"school": "Škola",
 		"schools": "Škole",
+		"ages": "Uzrast",
 		"city": {
 			"city": "Grad",
 			"allCities": "Svi gradovi"
 		}
 	},
-	"HomePage": {
+	"home": {
 		"title": "Obrazovanje u Srbiji"
 	},
-	"KindergartensPage": {
-		"List": {
-			"Card": {
-				"agesGroup": "Uzrast"
-			}
-		}
+	"kindergartens": {
+		"publicKindergarten": "Državni vrtić",
+		"privateKindergarten": "Privatni vrtić",
+		"public": "Državni",
+		"private": "Privatni"
 	},
-	"AppFooter": {
+	"appFooter": {
 		"text": "Informacije su date samo u informativne svrhe i mogu biti zastarele. Sajt nije odgovoran za sadržaj eksternih linkova. Nismo zvanični predstavnici navedenih organizacija."
 	},
-	"Filters": {
+	"filters": {
 		"title": "Opcije pretrage",
 		"languages": "Jezici nastave",
 		"areas": "Okruzi",
@@ -34,10 +34,10 @@
 		},
 		"clearFilters": "Resetujte filtere"
 	},
-	"CitySwitcher": {
+	"citySwitcher": {
 		"selectCity": "Izaberite grad:"
 	},
-	"LanguageSwitcher": {
+	"languageSwitcher": {
 		"selectLanguage": "Izaberite jezik:"
 	}
 }

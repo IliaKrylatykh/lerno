@@ -2,12 +2,14 @@ import Image from 'next/image'
 import { getKindergarten } from '@/entities/kindergarten'
 import { Locale } from '@/shared/types'
 import {
+	Badge,
 	Card,
 	CardContent,
 	CardHeader,
 	CardTitle,
 	Container,
 } from '@/shared/ui'
+import { getAgesRangeFromArray } from '@/shared/helpers'
 
 export default async function KindergartenPage({
 	params,
@@ -34,14 +36,17 @@ export default async function KindergartenPage({
 
 	return (
 		<Container className='mt-4 flex justify-center'>
-			<div className='max-w-4xl mx-auto p-6 space-y-6'>
+			<div className='w-full max-w-4xl mx-auto p-6 space-y-6'>
 				<Card className='shadow-xl'>
 					<CardHeader>
 						<CardTitle className='text-2xl'>{kindergarten.name}</CardTitle>
 						<div className='mt-2 flex flex-wrap items-center gap-2'>
-							{/* <Badge variant='outline'>от 2 до 6 лет</Badge> */}
+							{kindergarten.ageGroups && (
+								<Badge variant='outline'>
+									{getAgesRangeFromArray(kindergarten.ageGroups)}
+								</Badge>
+							)}
 							{/* <Badge variant='outline'>Частный</Badge> */}
-							{/* <Badge variant='outline'>Суботица</Badge> */}
 						</div>
 					</CardHeader>
 					<CardContent>

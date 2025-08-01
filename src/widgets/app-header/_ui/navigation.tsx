@@ -10,7 +10,7 @@ const navItems = [
 ]
 
 export const Navigation = () => {
-	const t = useTranslations('Common')
+	const t = useTranslations('common')
 	const pathname = usePathname()
 
 	const buttonBaseClasses =

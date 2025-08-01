@@ -1,29 +1,29 @@
 {
-	"Common": {
+	"common": {
 		"search": "Поиск",
 		"kindergarten": "Детский сад",
 		"kindergartens": "Детские сады",
 		"school": "Школа",
 		"schools": "Школы",
+		"ages": "Возраст",
 		"city": {
 			"city": "Город",
 			"allCities": "Все города"
 		}
 	},
-	"HomePage": {
+	"home": {
 		"title": "Образование в Сербии"
 	},
-	"KindergartensPage": {
-		"List": {
-			"Card": {
-				"agesGroup": "Возраст"
-			}
-		}
+	"kindergartens": {
+		"publicKindergarten": "Государственный детский сад",
+		"privateKindergarten": "Частный детский сад",
+		"public": "Государственный",
+		"private": "Частный"
 	},
-	"AppFooter": {
+	"appFooter": {
 		"text": "Информация предоставлена исключительно в ознакомительных целях и может быть устаревшей. Сайт не несёт ответственности за содержание внешних ссылок. Мы не являемся официальными представителями указанных организаций."
 	},
-	"Filters": {
+	"filters": {
 		"title": "Параметры поиска",
 		"languages": "Языки преподавания",
 		"areas": "Районы",
@@ -34,10 +34,10 @@
 		},
 		"clearFilters": "Сбросить фильтры"
 	},
-	"CitySwitcher": {
+	"citySwitcher": {
 		"selectCity": "Выберите город:"
 	},
-	"LanguageSwitcher": {
+	"languageSwitcher": {
 		"selectLanguage": "Выберите язык:"
 	}
 }
