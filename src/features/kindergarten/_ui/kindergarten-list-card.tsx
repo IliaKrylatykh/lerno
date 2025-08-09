@@ -47,6 +47,9 @@ export const KindergartenListCard: FC<Props> = ({
 						</CardTitle>
 					</CardHeader>
 					<CardDescription className='h-full flex flex-col justify-between mb-4'>
+						<div>
+							{kindergarten.city}, {kindergarten.area}, {kindergarten.subarea}
+						</div>
 						<div>{kindergarten.address}</div>
 						<KindergartenListCardLabels isPrivate={kindergarten.isPrivate} />
 					</CardDescription>

@@ -15,6 +15,20 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 				slug,
 				age_groups,
 				is_private,
+				lat,
+				lon,
+				city:locations!city_id (
+					slug,
+					location_translations (name, lang)
+				),
+				area:locations!area_id (
+					slug,
+					location_translations (name, lang)
+				),
+				subarea:locations!subarea_id (
+					slug,
+					location_translations (name, lang)
+				),
 				kindergarten_contacts (
 					type,
 					value,
@@ -46,6 +60,19 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 					return acc
 				}
 
+				const cityName =
+					kindergartenData.city?.location_translations?.find(
+						t => t.lang === locale
+					)?.name ?? null
+				const areaName =
+					kindergartenData.area?.location_translations?.find(
+						t => t.lang === locale
+					)?.name ?? null
+				const subareaName =
+					kindergartenData.subarea?.location_translations?.find(
+						t => t.lang === locale
+					)?.name ?? null
+
 				const mainPhotoPath = kindergartenData.main_photo
 				const photoData = mainPhotoPath
 					? supabase.storage.from('institutions').getPublicUrl(mainPhotoPath)
@@ -62,6 +89,9 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 					description: translation.description,
 					address: translation.address,
 					isPrivate: kindergartenData.is_private,
+					city: cityName,
+					area: areaName,
+					subarea: subareaName,
 				})
 
 				return acc

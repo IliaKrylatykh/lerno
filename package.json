@@ -8,8 +8,7 @@
 		"start": "next start",
 		"lint": "next lint",
 		"prettier": "prettier -w .",
-		"db:studio": "prisma studio",
-		"db:seed": "tsx prisma/seed.ts"
+		"db:generate": "npx supabase gen types typescript --schema public > ./src/shared/types/db.ts"
 	},
 	"dependencies": {
 		"@prisma/extension-accelerate": "^2.0.2",
@@ -26,6 +25,7 @@
 		"nextjs-toploader": "^3.8.16",
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0",
+		"supabase": "^2.33.9",
 		"tailwind-merge": "^3.3.1",
 		"zod": "^4.0.5"
 	},

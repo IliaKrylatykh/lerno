@@ -10,7 +10,7 @@ import { useTranslations } from 'next-intl'
 import { FC } from 'react'
 
 interface Props {
-	isPrivate: boolean
+	isPrivate: boolean | null
 }
 
 export const KindergartenListCardLabels: FC<Props> = ({ isPrivate }) => {
