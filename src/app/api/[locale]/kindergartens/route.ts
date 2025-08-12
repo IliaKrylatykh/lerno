@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { KindergartenList } from '@/entities/kindergarten'
-import { Locale } from '@/shared/types'
+import { Locale, WorkingHours, workingHoursSchema } from '@/shared/types'
 import { supabase } from '@/shared/lib/db'
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
@@ -15,6 +15,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 				slug,
 				age_groups,
 				is_private,
+				working_hours,
 				lat,
 				lon,
 				city:locations!city_id (
@@ -60,6 +61,10 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 					return acc
 				}
 
+				const workingHours: WorkingHours = workingHoursSchema.parse(
+					kindergartenData.working_hours
+				)
+
 				const cityName =
 					kindergartenData.city?.location_translations?.find(
 						t => t.lang === locale
@@ -89,6 +94,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 					description: translation.description,
 					address: translation.address,
 					isPrivate: kindergartenData.is_private,
+					workingHours,
 					city: cityName,
 					area: areaName,
 					subarea: subareaName,

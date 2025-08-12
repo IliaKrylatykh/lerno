@@ -1,4 +1,4 @@
-import { kindergartenIdSchema } from '@/shared/types'
+import { kindergartenIdSchema, workingHoursSchema } from '@/shared/types'
 import z from 'zod'
 
 export const kindergartenListItemSchema = z.object({
@@ -13,6 +13,7 @@ export const kindergartenListItemSchema = z.object({
 	city: z.string().nullable(),
 	area: z.string().nullable(),
 	subarea: z.string().nullable(),
+	workingHours: workingHoursSchema,
 })
 
 export const kindergartenListSchema = z.array(kindergartenListItemSchema)

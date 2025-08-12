@@ -1,3 +1,4 @@
 export * from './school'
 export * from './kindergarten'
 export * from './language'
+export * from './schedule'
