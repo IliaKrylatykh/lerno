@@ -8,8 +8,14 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 	const pathSegments = pathname.split('/')
 	const locale = (pathSegments[2] as Locale) ?? 'sr'
 
+	const type = request.nextUrl.searchParams.get('type')
+
+	console.log(request.url)
+	console.log(request.nextUrl.searchParams.toString())
+	console.log(request.nextUrl.searchParams.get('type'))
+
 	try {
-		const { data, error } = await supabase.from('kindergartens').select(`
+		let query = supabase.from('kindergartens').select(`
 				id,
 				main_photo,
 				slug,
@@ -42,6 +48,14 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 					lang
 				)
 			`)
+
+		if (request.nextUrl.searchParams.get('type') === 'public') {
+			query = query.eq('is_private', false)
+		} else if (request.nextUrl.searchParams.get('type') === 'private') {
+			query = query.eq('is_private', true)
+		}
+
+		const { data, error } = await query
 
 		if (error) {
 			console.error('[SUPABASE_FETCH_ERROR]', error.message)
