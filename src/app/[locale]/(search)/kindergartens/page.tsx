@@ -8,11 +8,15 @@ export default async function KindergartensPage({
 	params,
 	searchParams,
 }: {
-	params: Promise<{ locale: Locale }>
-	searchParams: { type?: string }
+	params: Promise<{
+		locale: Locale
+	}>
+	searchParams: Promise<{ type?: string }>
 }) {
-	const { locale } = await params
-	const type = searchParams.type || ''
+	const resolvedParams = await params
+	const locale = resolvedParams.locale
+
+	const { type } = await searchParams
 
 	const kindergartens = await getKindergartenList(locale, { type })
 
