@@ -18,7 +18,7 @@ export const KindergartenListCard: FC<Props> = ({
 }) => {
 	return (
 		<Link
-			href={`kindergartens/subotica/${kindergarten.slug}`}
+			href={`subotica/${kindergarten.slug}`}
 			className={cn('flex flex-col gap-2 w-full', className)}
 		>
 			<Card className='flex flex-row flex-grow py-0 rounded-br-lg rounded-tr-lg hover:shadow-xl transition-shadow duration-300 ease-in-out'>

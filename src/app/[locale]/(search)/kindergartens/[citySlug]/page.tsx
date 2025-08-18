@@ -1,3 +1,4 @@
+import { getAreaList, getCityList } from '@/entities/city'
 import { getKindergartenList } from '@/entities/kindergarten'
 import { Locale } from '@/shared/types/language'
 import { Container } from '@/shared/ui'
@@ -14,6 +15,13 @@ export default async function KindergartensPage({
 	const locale = resolvedParams.locale
 
 	const kindergartens = await getKindergartenList(locale)
+
+	const cities = await getCityList(locale)
+
+	// only Subotica for test
+	const areas = await getAreaList(locale, cities[0].id)
+
+	console.log(areas)
 
 	return (
 		<Container className='mt-4 flex'>

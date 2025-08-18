@@ -58,7 +58,7 @@ export const MainPageFilters: FC = () => {
 					</Button>
 				</div>
 
-				<Link href={`${locale}/${selectedType}`} className='w-full'>
+				<Link href={`${locale}/${selectedType}/subotica`} className='w-full'>
 					<Button className='w-full font-semibold text-base sm:text-xl gap-2 sm:gap-4 border-2 text-black border-black cursor-pointer bg-cyan-600 hover:bg-cyan-700'>
 						{tCommon('search')}
 					</Button>

@@ -8,12 +8,6 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 	const pathSegments = pathname.split('/')
 	const locale = (pathSegments[2] as Locale) ?? 'sr'
 
-	const type = request.nextUrl.searchParams.get('type')
-
-	console.log(request.url)
-	console.log(request.nextUrl.searchParams.toString())
-	console.log(request.nextUrl.searchParams.get('type'))
-
 	try {
 		let query = supabase.from('kindergartens').select(`
 				id,
