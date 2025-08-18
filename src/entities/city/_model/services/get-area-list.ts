@@ -3,15 +3,15 @@ import { treeifyError } from 'zod'
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
 
-export const getAreaList = async (locale: Locale, cityId: string) => {
+export const getAreaList = async (locale: Locale) => {
 	try {
-		const res = await fetch(`${baseUrl}/api/${locale}/cities/${cityId}`, {
+		const res = await fetch(`${baseUrl}/api/${locale}/cities/subotica`, {
 			next: { revalidate: 3600 },
 		})
 
 		if (!res.ok) {
 			console.error(
-				`Failed to fetch area list for city ${cityId}: ${res.status} ${res.statusText}`
+				`Failed to fetch area list for city Subotica: ${res.status} ${res.statusText}`
 			)
 			return []
 		}
@@ -27,7 +27,7 @@ export const getAreaList = async (locale: Locale, cityId: string) => {
 
 		return parsed.data
 	} catch (error) {
-		console.error(`Failed to fetch area list for city ${cityId}: ${error}`)
+		console.error(`Failed to fetch area list for city Subotica: ${error}`)
 		return []
 	}
 }

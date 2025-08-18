@@ -19,7 +19,7 @@ export default async function KindergartensPage({
 	const cities = await getCityList(locale)
 
 	// only Subotica for test
-	const areas = await getAreaList(locale, cities[0].id)
+	const areas = await getAreaList(locale)
 
 	console.log(areas)
 

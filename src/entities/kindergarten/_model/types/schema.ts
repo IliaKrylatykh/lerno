@@ -27,4 +27,10 @@ export const kindergartenSchema = z.object({
 	description: z.string().nullable(),
 	mainPhoto: z.string().nullable(),
 	isPrivate: z.boolean().nullable(),
+	workingHours: workingHoursSchema,
+	city: z.string().nullable(),
+	area: z.string().nullable(),
+	subarea: z.string().nullable(),
+	lat: z.number().nullable(),
+	lon: z.number().nullable(),
 })

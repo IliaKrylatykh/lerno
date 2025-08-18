@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { Locale } from '@/shared/types'
+import { Locale, WorkingHours, workingHoursSchema } from '@/shared/types'
 import { supabase } from '@/shared/lib/db'
 import { Kindergarten } from '@/entities/kindergarten'
 
@@ -16,6 +16,21 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
         slug,
 				age_groups,
 				is_private,
+				working_hours,
+				lat,
+				lon,
+				city:locations!city_id (
+					slug,
+					location_translations (name, lang)
+				),
+				area:locations!area_id (
+					slug,
+					location_translations (name, lang)
+				),
+				subarea:locations!subarea_id (
+					slug,
+					location_translations (name, lang)
+				),
         kindergarten_contacts (
           type,
           value,
@@ -57,6 +72,21 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 			)
 		}
 
+		const workingHours: WorkingHours = workingHoursSchema.parse(
+			kindergartenData.working_hours
+		)
+
+		const cityName =
+			kindergartenData.city?.location_translations?.find(t => t.lang === locale)
+				?.name ?? null
+		const areaName =
+			kindergartenData.area?.location_translations?.find(t => t.lang === locale)
+				?.name ?? null
+		const subareaName =
+			kindergartenData.subarea?.location_translations?.find(
+				t => t.lang === locale
+			)?.name ?? null
+
 		const mainPhotoPath = kindergartenData.main_photo
 		const photoData = mainPhotoPath
 			? supabase.storage.from('institutions').getPublicUrl(mainPhotoPath)
@@ -73,6 +103,12 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 			address: translation.address,
 			description: translation.description,
 			isPrivate: kindergartenData.is_private,
+			workingHours,
+			city: cityName,
+			area: areaName,
+			subarea: subareaName,
+			lat: kindergartenData.lat,
+			lon: kindergartenData.lon,
 		}
 
 		return NextResponse.json(kindergarten)
