@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { getKindergarten } from '@/entities/kindergarten'
-import { Locale } from '@/shared/types'
+import type { Locale } from '@/shared/types'
 import {
 	Badge,
 	Card,
@@ -13,13 +13,13 @@ import {
 export default async function KindergartenPage({
 	params,
 }: {
-	params: {
+	params: Promise<{
 		locale: Locale
 		citySlug: string
 		kindergartenSlug: string
-	}
+	}>
 }) {
-	const { locale, kindergartenSlug } = params
+	const { locale, kindergartenSlug } = await params
 
 	const kindergarten = await getKindergarten(locale, kindergartenSlug)
 
