@@ -6,6 +6,11 @@ const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
 
 export const getKindergarten = async (locale: Locale, slug: string) => {
 	try {
+		console.log(
+			'Fetching kindergarten:',
+			`${baseUrl}/api/${locale}/kindergartens/subotica/${slug}`
+		)
+
 		const res = await fetch(
 			`${baseUrl}/api/${locale}/kindergartens/subotica/${slug}`,
 			{

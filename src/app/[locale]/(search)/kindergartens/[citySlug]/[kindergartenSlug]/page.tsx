@@ -9,6 +9,7 @@ import {
 	CardTitle,
 	Container,
 } from '@/shared/ui'
+import { KindergartenMap } from '@/features/kindergarten/client'
 
 export default async function KindergartenPage({
 	params,
@@ -33,10 +34,9 @@ export default async function KindergartenPage({
 		)
 	}
 
-	const ageRange =
-		kindergarten.ageGroups && kindergarten.ageGroups.length > 0
-			? `${kindergarten.ageGroups[0]}–${kindergarten.ageGroups.at(-1)} лет`
-			: null
+	const ageRange = kindergarten.ageGroups?.length
+		? `${kindergarten.ageGroups[0]}–${kindergarten.ageGroups.at(-1)} лет`
+		: null
 
 	const monday = kindergarten.workingHours?.mon
 	const mondayHours = monday ? `${monday.from} – ${monday.to}` : null
@@ -113,9 +113,17 @@ export default async function KindergartenPage({
 							📍 {kindergarten.address}, {kindergarten.city}
 						</div>
 						{kindergarten.area && <div>🏙️ Район: {kindergarten.area}</div>}
-						<div>
-							🌍 Координаты: {kindergarten.lat}, {kindergarten.lon}
-						</div>
+						{kindergarten &&
+							kindergarten.lat &&
+							kindergarten.lon &&
+							kindergarten.address && (
+								<KindergartenMap
+									lat={kindergarten.lat}
+									lon={kindergarten.lon}
+									name={kindergarten.name}
+									address={kindergarten.address}
+								/>
+							)}
 					</CardContent>
 				</Card>
 
