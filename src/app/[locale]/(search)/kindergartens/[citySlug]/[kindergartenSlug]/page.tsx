@@ -15,13 +15,11 @@ import {
 } from '@/shared/ui'
 import { KindergartenMap } from '@/features/kindergarten/client'
 
-type Params = {
-	locale: Locale
-	citySlug: string
-	kindergartenSlug: string
-}
-
-export async function generateMetadata({ params }: { params: Params }) {
+export async function generateMetadata({
+	params,
+}: {
+	params: { locale: Locale; citySlug: string; kindergartenSlug: string }
+}) {
 	return getKindergartenMetadata(
 		params.locale,
 		params.citySlug,
@@ -32,7 +30,11 @@ export async function generateMetadata({ params }: { params: Params }) {
 export default async function KindergartenPage({
 	params,
 }: {
-	params: Promise<Params>
+	params: Promise<{
+		locale: Locale
+		citySlug: string
+		kindergartenSlug: string
+	}>
 }) {
 	const { locale, kindergartenSlug } = await params
 	const tCommon = await getTranslations('common')
