@@ -21,13 +21,13 @@ type Params = {
 	kindergartenSlug: string
 }
 
-export async function generateMetadata({ params }: { params: Params }) {
-	return getKindergartenMetadata(
-		params.locale,
-		params.citySlug,
-		params.kindergartenSlug
-	)
-}
+// export async function generateMetadata({ params }: { params: Params }) {
+// 	return getKindergartenMetadata(
+// 		params.locale,
+// 		params.citySlug,
+// 		params.kindergartenSlug
+// 	)
+// }
 
 export default async function KindergartenPage({ params }: { params: Params }) {
 	const { locale, kindergartenSlug } = params
