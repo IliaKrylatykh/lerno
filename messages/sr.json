@@ -6,6 +6,7 @@
 		"school": "Škola",
 		"schools": "Škole",
 		"ages": "Uzrast",
+		"years": "godina",
 		"workingHours": "Radno vreme",
 		"city": {
 			"city": "Grad",
@@ -19,7 +20,20 @@
 		"publicKindergarten": "Državni vrtić",
 		"privateKindergarten": "Privatni vrtić",
 		"public": "Državni",
-		"private": "Privatni"
+		"private": "Privatni",
+		"kindergartenPage": {
+			"basicInformation": "Osnovne informacije",
+			"kindergartenType": "Vrsta vrtića",
+			"contacts": "Kontakti",
+			"district": "Okrug",
+			"notFoundOrFetchError": "Vrtić nije pronađen ili je došlo do greške pri preuzimanju."
+		},
+		"seo": {
+			"notFoundTitle": "Vrtić nije pronađen",
+			"notFoundDescription": "Traženi vrtić nije pronađen ili je došlo do greške prilikom učitavanja njegovih podataka..",
+			"kindergartenIn": "vrtić u",
+			"defaultDescription": "Pogledajte detaljne informacije o vrtićima u Srbiji, uključujući radno vreme, lokaciju i starosne grupe."
+		}
 	},
 	"appFooter": {
 		"text": "Informacije su date samo u informativne svrhe i mogu biti zastarele. Sajt nije odgovoran za sadržaj eksternih linkova. Nismo zvanični predstavnici navedenih organizacija."

@@ -6,6 +6,7 @@
 		"school": "School",
 		"schools": "Schools",
 		"ages": "Ages",
+		"years": "years",
 		"workingHours": "Working hours",
 		"city": {
 			"city": "City",
@@ -19,7 +20,20 @@
 		"publicKindergarten": "Public kindergarten",
 		"privateKindergarten": "Private kindergarten",
 		"public": "Public",
-		"private": "Private"
+		"private": "Private",
+		"kindergartenPage": {
+			"basicInformation": "Basic information",
+			"kindergartenType": "Kindergarten type",
+			"contacts": "Contacts",
+			"district": "District",
+			"notFoundOrFetchError": "Kindergarten not found or loading error occurred."
+		},
+		"seo": {
+			"notFoundTitle": "Kindergarten not found",
+			"notFoundDescription": "The requested kindergarten could not be found or there was an error loading its information.",
+			"kindergartenIn": "kindergarten in",
+			"defaultDescription": "Explore kindergartens in Serbia with detailed information including working hours, location, and age groups."
+		}
 	},
 	"appFooter": {
 		"text": "The information is provided for informational purposes only and may be out of date. The site is not responsible for the content of external links. We are not official representatives of the specified institutions."
