@@ -29,8 +29,12 @@ type Params = {
 // 	)
 // }
 
-export default async function KindergartenPage({ params }: { params: Params }) {
-	const { locale, kindergartenSlug } = params
+export default async function KindergartenPage({
+	params,
+}: {
+	params: Promise<Params>
+}) {
+	const { locale, kindergartenSlug } = await params
 	const tCommon = await getTranslations('common')
 	const t = await getTranslations('kindergartens')
 
