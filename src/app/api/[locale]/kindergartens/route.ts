@@ -76,9 +76,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 				const nameWithSr =
 					locale === 'sr'
 						? translation.name
-						: srTranslation
-						? `${translation.name} (${srTranslation.name})`
-						: translation.name
+						: `${translation.name} (${srTranslation?.name ?? translation.name})`
 
 				const workingHours: WorkingHours = workingHoursSchema.parse(
 					kindergartenData.working_hours
