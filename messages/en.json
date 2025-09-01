@@ -11,7 +11,14 @@
 		"city": {
 			"city": "City",
 			"allCities": "All cities"
+		},
+		"seo": {
+			"title": "Lerno",
+			"description": "About education in Serbia"
 		}
+	},
+	"notFound": {
+
 	},
 	"home": {
 		"title": "Education in Serbia"

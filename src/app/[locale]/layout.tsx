@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Inter as FontSans } from 'next/font/google'
 import './globals.css'
 import { cn } from '@/shared/ui'
-import { getMessages } from 'next-intl/server'
+import { getMessages, getTranslations } from 'next-intl/server'
 import { hasLocale, Locale, NextIntlClientProvider } from 'next-intl'
 import { notFound } from 'next/navigation'
 import { routing } from '@/shared/i18n/routing'
@@ -13,9 +13,31 @@ const fontSans = FontSans({
 	variable: '--font-sans',
 })
 
-export const metadata: Metadata = {
-	title: 'Lerno',
-	description: 'About education in Serbia',
+export async function generateMetadata({
+	params,
+}: {
+	params: { locale: Locale }
+}): Promise<Metadata> {
+	const { locale } = params
+
+	if (!hasLocale(routing.locales, locale)) {
+		notFound()
+	}
+
+	const t = await getTranslations({ locale, namespace: 'common' })
+
+	return {
+		title: t('seo.title'),
+		description: t('seo.description'),
+		openGraph: {
+			title: t('seo.title'),
+			description: t('seo.description'),
+			images: ['https://lerno.rs/og-preview.png'],
+			locale,
+			url: `https://lerno.rs/${locale}`,
+			siteName: 'Lerno',
+		},
+	}
 }
 
 export default async function RootLayout(

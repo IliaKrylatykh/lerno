@@ -69,6 +69,17 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 					return acc
 				}
 
+				const srTranslation = kindergartenData.kindergarten_translations.find(
+					t => t.lang === 'sr'
+				)
+
+				const nameWithSr =
+					locale === 'sr'
+						? translation.name
+						: srTranslation
+						? `${translation.name} (${srTranslation.name})`
+						: translation.name
+
 				const workingHours: WorkingHours = workingHoursSchema.parse(
 					kindergartenData.working_hours
 				)
@@ -96,7 +107,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 				acc.push({
 					id: kindergartenData.id,
 					mainPhoto: photoUrl,
-					name: translation.name,
+					name: nameWithSr,
 					slug: kindergartenData.slug,
 					ageGroups: kindergartenData.age_groups,
 					description: translation.description,

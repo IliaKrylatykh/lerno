@@ -11,6 +11,10 @@
 		"city": {
 			"city": "Grad",
 			"allCities": "Svi gradovi"
+		},
+		"seo": {
+			"title": "Lerno",
+			"description": "O obrazovanju u Srbiji"
 		}
 	},
 	"home": {

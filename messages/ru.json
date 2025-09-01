@@ -11,6 +11,10 @@
 		"city": {
 			"city": "Город",
 			"allCities": "Все города"
+		},
+		"seo": {
+			"title": "Lerno",
+			"description": "Об образовании в Сербии"
 		}
 	},
 	"home": {

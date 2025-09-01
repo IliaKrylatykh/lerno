@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import createMiddleware from 'next-intl/middleware'
 import { routing } from './shared/i18n/routing'
 
-const validCitySlugs = ['subotica', 'novi-sad', 'belgrade']
+const validCitySlugs = ['subotica']
 
 const appMiddleware = (request: NextRequest) => {
 	const { pathname } = request.nextUrl

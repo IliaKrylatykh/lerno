@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://lerno.rs
+
+# Sitemaps
+Sitemap: https://lerno.rs/sitemap.xml
